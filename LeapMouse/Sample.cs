@@ -17,7 +17,7 @@ class SampleListener : Listener
     private static extern bool SetCursorPos(int X, int Y);
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-    public static extern void mouse_event(long dwFlags, long dx, long dy, long cButtons, long dwExtraInfo);
+    public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
 
     private Object thisLock = new Object();
