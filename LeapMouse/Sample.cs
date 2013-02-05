@@ -16,6 +16,10 @@ class SampleListener : Listener
     [DllImport("user32.dll")]
     private static extern bool SetCursorPos(int X, int Y);
 
+    [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+    public static extern void mouse_event(long dwFlags, long dx, long dy, long cButtons, long dwExtraInfo);
+
+
     private Object thisLock = new Object();
 
 
@@ -76,9 +80,16 @@ class SampleListener : Listener
             int fheight = (int)((height * 0.2) + (prevheight * (1.0 - 0.2)));
 
             fheight = screen.HeightPixels - fheight;
-            Console.Write(fingers[0].TipPosition + " " + width + " " + height + " " + tranX + " " + tranY +  "\n");
-            SetCursorPos(fwidth, fheight);
+            if (fingers.Count == 2)
+            {
 
+                mouse_event(0x02 | 0x04, 0, fwidth, fheight, 0);
+            }
+            else
+            {
+                Console.Write(fingers[0].TipPosition + " " + width + " " + height + " " + tranX + " " + tranY + "\n");
+                SetCursorPos(fwidth, fheight);
+            }
         }
     }
 }
