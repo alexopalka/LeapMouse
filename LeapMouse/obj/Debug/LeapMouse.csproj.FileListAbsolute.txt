@@ -14,3 +14,7 @@ C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x6
 C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\obj\Debug\LeapMouse.exe
 C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\obj\Debug\LeapMouse.pdb
 C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\obj\Debug\LeapMouse.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LEAPMouse\LeapMouse\bin\x64\Debug\LeapMouse.exe.manifest
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LEAPMouse\LeapMouse\bin\x64\Debug\LeapMouse.application
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LEAPMouse\LeapMouse\obj\Debug\LeapMouse.exe.manifest
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LEAPMouse\LeapMouse\obj\Debug\LeapMouse.application
