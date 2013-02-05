@@ -1,0 +1,16 @@
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\LeapMouse.exe.config
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\Debug\LeapMouse.exe.config
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\Debug\LeapMouse.exe
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\Debug\LeapMouse.pdb
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\Debug\LeapCSharp.NET4.0.dll
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x86\Debug\LeapMouse.exe.config
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x86\Debug\LeapMouse.exe
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x86\Debug\LeapMouse.pdb
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x86\Debug\LeapCSharp.NET4.0.dll
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x64\Debug\LeapMouse.exe.config
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x64\Debug\LeapMouse.exe
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x64\Debug\LeapMouse.pdb
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\bin\x64\Debug\LeapCSharp.NET4.0.dll
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\obj\Debug\LeapMouse.exe
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\obj\Debug\LeapMouse.pdb
+C:\Users\Alex\Documents\GitHub\determineFingers\Debug\LeapMouse\LeapMouse\obj\Debug\LeapMouse.csprojResolveAssemblyReference.cache
