@@ -8,3 +8,4 @@ C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x64\Release\LeapMouse.exe
 C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x64\Release\LeapMouse.application
 C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x64\Release\LeapMouse.exe
 C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x64\Release\LeapMouse.pdb
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x64\Release\LeapMouse.csprojResolveAssemblyReference.cache

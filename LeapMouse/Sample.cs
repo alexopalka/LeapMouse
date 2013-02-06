@@ -80,10 +80,17 @@ class SampleListener : Listener
             int fheight = (int)((height * 0.2) + (prevheight * (1.0 - 0.2)));
 
             fheight = screen.HeightPixels - fheight;
-            if (fingers.Count == 2)
+            if (fingers.Count == 2 || fingers.Count == 3)
             {
+                if (fingers.Count == 2)
+                {
+                    mouse_event(0x0002 | 0x0004, 0, fwidth, fheight, 0);
+                }
+                else
+                {
+                    mouse_event(0x0008 | 0x0010, 0, fwidth, fheight, 0);
+                }
 
-                mouse_event(0x02 | 0x04, 0, fwidth, fheight, 0);
             }
             else
             {
