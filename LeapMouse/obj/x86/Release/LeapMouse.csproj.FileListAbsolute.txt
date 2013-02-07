@@ -1,0 +1,10 @@
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\bin\x86\Release\LeapMouse.exe.config
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\bin\x86\Release\LeapMouse.exe.manifest
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\bin\x86\Release\LeapMouse.application
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\bin\x86\Release\LeapMouse.exe
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\bin\x86\Release\LeapMouse.pdb
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\bin\x86\Release\LeapCSharp.NET4.0.dll
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x86\Release\LeapMouse.exe.manifest
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x86\Release\LeapMouse.application
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x86\Release\LeapMouse.exe
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\obj\x86\Release\LeapMouse.pdb

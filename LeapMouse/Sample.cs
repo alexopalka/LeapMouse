@@ -8,6 +8,7 @@
 
 using System;
 using System.Threading;
+using System.Diagnostics;
 using Leap;
 using System.Runtime.InteropServices;
 
@@ -19,6 +20,8 @@ class SampleListener : Listener
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
+    [DllImport("user32.dll")]
+    static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
     private Object thisLock = new Object();
 
@@ -34,6 +37,9 @@ class SampleListener : Listener
     public override void OnInit(Controller controller)
     {
         SafeWriteLine("Initialized");
+
+        IntPtr h = Process.GetCurrentProcess().MainWindowHandle;
+        ShowWindow(h, 0);
     }
 
     public override void OnConnect(Controller controller)
@@ -105,9 +111,12 @@ class Sample
 {
     public static void Main()
     {
+
+
         // Create a sample listener and controller
         SampleListener listener = new SampleListener();
         Controller controller = new Controller();
+
 
         // Have the sample listener receive events from the controller
         controller.AddListener(listener);
