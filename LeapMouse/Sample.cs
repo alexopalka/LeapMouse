@@ -23,6 +23,7 @@ class SampleListener : Listener
     [DllImport("user32.dll")]
     static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
+
     private Object thisLock = new Object();
 
 
@@ -34,12 +35,18 @@ class SampleListener : Listener
         }
     }
 
+    public Int64 prevTime;
+    public Int64 currentTime;
+    public Int64 changeTime;
+
     public override void OnInit(Controller controller)
     {
         SafeWriteLine("Initialized");
 
-        IntPtr h = Process.GetCurrentProcess().MainWindowHandle;
-        ShowWindow(h, 0);
+
+
+        //IntPtr h = Process.GetCurrentProcess().MainWindowHandle;
+        //ShowWindow(h, 0);
     }
 
     public override void OnConnect(Controller controller)
@@ -60,53 +67,56 @@ class SampleListener : Listener
     public override void OnFrame(Controller controller)
     {
         Frame currentFrame = controller.Frame();
-        Hand hand = currentFrame.Hands[0];
-        FingerList fingers = hand.Fingers;
-        Pointable pointable = currentFrame.Pointables[0];
-        Leap.Screen screen = controller.CalibratedScreens.ClosestScreenHit(pointable);
-
-        Frame prevFrame = controller.Frame(10);
-        Hand prevhand = prevFrame.Hands[0];
-        FingerList prevfingers = prevhand.Fingers;
-        Pointable prevpointable = prevFrame.Pointables[0];
-        ScreenList screenList = controller.CalibratedScreens;
-        Leap.Screen prevscreen = screenList.ClosestScreenHit(prevpointable);
-
-        if (!fingers.Empty)
+        currentTime = currentFrame.Timestamp;
+        changeTime = currentTime - prevTime;
+        if (changeTime > 10000)
         {
-            float prevwidth = prevscreen.Intersect(prevpointable, true, 1.0F).x * prevscreen.WidthPixels;
-            float prevheight = prevscreen.Intersect(prevpointable, true, 1.0F).y * prevscreen.HeightPixels;
-            float width = screen.Intersect(pointable, true, 1.0F).x * screen.WidthPixels;
-            float height = screen.Intersect(pointable, true, 1.0F).y * screen.HeightPixels;
+            Hand hand = currentFrame.Hands[0];
+            FingerList fingers = hand.Fingers;
+            Pointable pointable = currentFrame.Pointables[0];
+            Leap.Screen screen = controller.CalibratedScreens.ClosestScreenHit(pointable);
+            Frame prevFrame = controller.Frame(10);
+            Hand prevhand = prevFrame.Hands[0];
+            FingerList prevfingers = prevhand.Fingers;
+            Pointable prevpointable = prevFrame.Pointables[0];
+            ScreenList screenList = controller.CalibratedScreens;
+            Leap.Screen prevscreen = screenList.ClosestScreenHit(prevpointable);
 
-           float tranX =  currentFrame.Translation(prevFrame).x;
-           float tranY = currentFrame.Translation(prevFrame).y;    
-       
-            int fwidth = (int)((width * 0.2) + (prevwidth * (1.0 - 0.2)));
-            int fheight = (int)((height * 0.2) + (prevheight * (1.0 - 0.2)));
-
-            fheight = screen.HeightPixels - fheight;
-            if (fingers.Count == 2 || fingers.Count == 3)
+            if (!fingers.Empty)
             {
-                if (fingers.Count == 2)
+                float prevwidth = prevscreen.Intersect(prevpointable, true, 1.0F).x * prevscreen.WidthPixels;
+                float prevheight = prevscreen.Intersect(prevpointable, true, 1.0F).y * prevscreen.HeightPixels;
+                float width = screen.Intersect(pointable, true, 1.0F).x * screen.WidthPixels;
+                float height = screen.Intersect(pointable, true, 1.0F).y * screen.HeightPixels;
+                float tranX = currentFrame.Translation(prevFrame).x;
+                float tranY = currentFrame.Translation(prevFrame).y;
+                int fwidth = (int)((width * 0.2) + (prevwidth * (1.0 - 0.2)));
+                int fheight = (int)((height * 0.2) + (prevheight * (1.0 - 0.2)));
+                fheight = screen.HeightPixels - fheight;
+                if (fingers.Count == 2 || fingers.Count == 3)
                 {
-                    mouse_event(0x0002 | 0x0004, 0, fwidth, fheight, 0);
+                    if (changeTime > 2000)
+                    {
+                        if (fingers.Count == 2)
+                        {
+                            mouse_event(0x0002 | 0x0004, 0, fwidth, fheight, 0);
+                        }
+                        else
+                        {
+                            mouse_event(0x0008 | 0x0010, 0, fwidth, fheight, 0);
+                        }
+                    }
                 }
                 else
                 {
-                    mouse_event(0x0008 | 0x0010, 0, fwidth, fheight, 0);
+                    Console.Write(fingers[0].TipPosition + " " + width + " " + height + " " + tranX + " " + tranY + "\n");
+                    SetCursorPos(fwidth, fheight);
                 }
-
             }
-            else
-            {
-                Console.Write(fingers[0].TipPosition + " " + width + " " + height + " " + tranX + " " + tranY + "\n");
-                SetCursorPos(fwidth, fheight);
-            }
+            prevTime = currentTime;
         }
     }
 }
-
 class Sample
 {
     public static void Main()
@@ -116,6 +126,8 @@ class Sample
         // Create a sample listener and controller
         SampleListener listener = new SampleListener();
         Controller controller = new Controller();
+
+        listener.prevTime = controller.Frame().Timestamp;
 
 
         // Have the sample listener receive events from the controller
