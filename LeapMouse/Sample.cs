@@ -46,8 +46,6 @@ class SampleListener : Listener
 
     public override void OnInit(Controller controller)
     {
-
-
         SafeWriteLine("Initialized");
         //IntPtr h = Process.GetCurrentProcess().MainWindowHandle;
         //ShowWindow(h, 0);
@@ -71,38 +69,38 @@ class SampleListener : Listener
 
     public override void OnFrame(Controller controller)
        {
-           frame currentframe = controller.frame();
-           currenttime = currentframe.timestamp;
-           changetime = currenttime - prevtime;
-           if (changetime > 10000)
+           Frame currentFrame = controller.Frame();
+           currentTime = currentFrame.Timestamp;
+           changeTime = currentTime - prevTime;
+           if (changeTime > 10000)
            {
-               hand hand = currentframe.hands[0];
-               fingerlist fingers = hand.fingers;
-               pointable pointable = currentframe.pointables[0];
-               leap.screen screen = controller.calibratedscreens.closestscreenhit(pointable);
-               frame prevframe = controller.frame(10);
-               hand prevhand = prevframe.hands[0];
-               fingerlist prevfingers = prevhand.fingers;
-               pointable prevpointable = prevframe.pointables[0];
-               screenlist screenlist = controller.calibratedscreens;
-               leap.screen prevscreen = screenlist.closestscreenhit(prevpointable);
+               Hand hand = currentFrame.Hands[0];
+               FingerList fingers = hand.Fingers;
+               Pointable pointable = currentFrame.Pointables[0];
+               Leap.Screen screen = controller.CalibratedScreens.ClosestScreenHit(pointable);
+               Frame prevFrame = controller.Frame(10);
+               Hand prevhand = prevFrame.Hands[0];
+               FingerList prevfingers = prevhand.Fingers;
+               Pointable prevpointable = prevFrame.Pointables[0];
+               ScreenList screenList = controller.CalibratedScreens;
+               Leap.Screen prevscreen = screenList.ClosestScreenHit(prevpointable);
 
-               if (!fingers.empty)
+               if (!fingers.Empty)
                {
-                   float prevwidth = prevscreen.intersect(prevpointable, true, 1.0f).x * prevscreen.widthpixels;
-                   float prevheight = prevscreen.intersect(prevpointable, true, 1.0f).y * prevscreen.heightpixels;
-                   float width = screen.intersect(pointable, true, 1.0f).x * screen.widthpixels;
-                   float height = screen.intersect(pointable, true, 1.0f).y * screen.heightpixels;
-                   float tranx = currentframe.translation(prevframe).x;
-                   float trany = currentframe.translation(prevframe).y;
+                   float prevwidth = prevscreen.Intersect(prevpointable, true, 1.0F).x * prevscreen.WidthPixels;
+                   float prevheight = prevscreen.Intersect(prevpointable, true, 1.0F).y * prevscreen.HeightPixels;
+                   float width = screen.Intersect(pointable, true, 1.0F).x * screen.WidthPixels;
+                   float height = screen.Intersect(pointable, true, 1.0F).y * screen.HeightPixels;
+                   float tranX = currentFrame.Translation(prevFrame).x;
+                   float tranY = currentFrame.Translation(prevFrame).y;
                    int fwidth = (int)((width * 0.2) + (prevwidth * (1.0 - 0.2)));
                    int fheight = (int)((height * 0.2) + (prevheight * (1.0 - 0.2)));
-                   fheight = screen.heightpixels - fheight;
-                   if (fingers.count == 2 || fingers.count == 3)
+                   fheight = screen.HeightPixels - fheight;
+                   if (fingers.Count == 2 || fingers.Count == 3)
                    {
-                       if (changetime > 8000)
+                       if (changeTime > 8000)
                        {
-                           if (fingers.count == 2)
+                           if (fingers.Count == 2)
                            {
                                mouse_event(0x0002 | 0x0004, 0, fwidth, fheight, 0);
                            }
@@ -114,15 +112,14 @@ class SampleListener : Listener
                    }
                    else
                    {
-                       console.write(fingers[0].tipposition + " " + width + " " + height + " " + tranx + " " + trany + "\n");
-                       setcursorpos(fwidth, fheight);
+                       Console.Write(fingers[0].TipPosition + " " + width + " " + height + " " + tranX + " " + tranY + "\n");
+                       SetCursorPos(fwidth, fheight);
                    }
                }
-               prevtime = currenttime;
+               prevTime = currentTime;
            }
        }
     }
-}
 
 class Sample
 {
