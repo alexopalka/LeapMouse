@@ -17,6 +17,9 @@ class SampleListener : Listener
     [DllImport("user32.dll")]
     private static extern bool SetCursorPos(int X, int Y);
 
+    [DllImport("user32.dll")]
+    private static extern bool GetCursorPos();
+
     [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
     public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
@@ -44,10 +47,12 @@ class SampleListener : Listener
     public HandList currentHands;
     public HandList previousHands;
 
+    bool mouseOn = false;
+
     public override void OnInit(Controller controller)
     {
         SafeWriteLine("Initialized");
-        //IntPtr h = Process.GetCurrentProcess().MainWindowHandle;
+       // IntPtr h = Process.GetCurrentProcess().MainWindowHandle;
         //ShowWindow(h, 0);
     }
 
@@ -67,59 +72,67 @@ class SampleListener : Listener
 
     }
 
-    public override void OnFrame(Controller controller)
-       {
-           Frame currentFrame = controller.Frame();
-           currentTime = currentFrame.Timestamp;
-           changeTime = currentTime - prevTime;
-           if (changeTime > 10000)
-           {
-               Hand hand = currentFrame.Hands[0];
-               FingerList fingers = hand.Fingers;
-               Pointable pointable = currentFrame.Pointables[0];
-               Leap.Screen screen = controller.CalibratedScreens.ClosestScreenHit(pointable);
-               Frame prevFrame = controller.Frame(10);
-               Hand prevhand = prevFrame.Hands[0];
-               FingerList prevfingers = prevhand.Fingers;
-               Pointable prevpointable = prevFrame.Pointables[0];
-               ScreenList screenList = controller.CalibratedScreens;
-               Leap.Screen prevscreen = screenList.ClosestScreenHit(prevpointable);
 
-               if (!fingers.Empty)
-               {
-                   float prevwidth = prevscreen.Intersect(prevpointable, true, 1.0F).x * prevscreen.WidthPixels;
-                   float prevheight = prevscreen.Intersect(prevpointable, true, 1.0F).y * prevscreen.HeightPixels;
-                   float width = screen.Intersect(pointable, true, 1.0F).x * screen.WidthPixels;
-                   float height = screen.Intersect(pointable, true, 1.0F).y * screen.HeightPixels;
-                   float tranX = currentFrame.Translation(prevFrame).x;
-                   float tranY = currentFrame.Translation(prevFrame).y;
-                   int fwidth = (int)((width * 0.2) + (prevwidth * (1.0 - 0.2)));
-                   int fheight = (int)((height * 0.2) + (prevheight * (1.0 - 0.2)));
-                   fheight = screen.HeightPixels - fheight;
-                   if (fingers.Count == 2 || fingers.Count == 3)
-                   {
-                       if (changeTime > 8000)
-                       {
-                           if (fingers.Count == 2)
-                           {
-                               mouse_event(0x0002 | 0x0004, 0, fwidth, fheight, 0);
-                           }
-                           else
-                           {
-                               mouse_event(0x0008 | 0x0010, 0, fwidth, fheight, 0);
-                           }
-                       }
-                   }
-                   else
-                   {
-                       Console.Write(fingers[0].TipPosition + " " + width + " " + height + " " + tranX + " " + tranY + "\n");
-                       SetCursorPos(fwidth, fheight);
-                   }
-               }
-               prevTime = currentTime;
-           }
-       }
-    }
+
+
+    public override void OnFrame(Controller controller)
+    {
+        Frame currentFrame = controller.Frame();
+                currentTime = currentFrame.Timestamp;
+                changeTime = currentTime - prevTime;
+                if (changeTime > 5000)
+                {
+                    Hand hand = currentFrame.Hands[0];
+                    FingerList fingers = hand.Fingers;
+                    Pointable pointable = currentFrame.Pointables[0];
+                    Leap.Screen screen = controller.CalibratedScreens.ClosestScreenHit(pointable);
+                    Frame prevFrame = controller.Frame(10);
+                    Hand prevhand = prevFrame.Hands[0];
+                    FingerList prevfingers = prevhand.Fingers;
+                    Pointable prevpointable = prevFrame.Pointables[0];
+                    ScreenList screenList = controller.CalibratedScreens;
+                    Leap.Screen prevscreen = screenList.ClosestScreenHit(prevpointable);
+
+                    if (!fingers.Empty)
+                    {
+                        float prevwidth = prevscreen.Intersect(prevpointable, true, 1.0F).x * prevscreen.WidthPixels;
+                        float prevheight = prevscreen.Intersect(prevpointable, true, 1.0F).y * prevscreen.HeightPixels;
+                        float width = screen.Intersect(pointable, true, 1.0F).x * screen.WidthPixels;
+                        float height = screen.Intersect(pointable, true, 1.0F).y * screen.HeightPixels;
+                        float tranX = currentFrame.Translation(prevFrame).x;
+                        float tranY = currentFrame.Translation(prevFrame).y;
+                        int fwidth = (int)((width * 0.2) + (prevwidth * (1.0 - 0.2)));
+                        int fheight = (int)((height * 0.2) + (prevheight * (1.0 - 0.2)));
+                        fheight = screen.HeightPixels - fheight;
+                        if (fingers.Count == 2 || fingers.Count == 3)
+                        {
+                            if (changeTime > 5000)
+                            {
+                                if (fingers.Count == 2)
+                                {
+                                    mouse_event(0x0002 | 0x0004, 0, fwidth, fheight, 0);
+                                }
+                                else
+                                {
+                                    mouse_event(0x0008 | 0x0010, 0, fwidth, fheight, 0);
+                                }
+
+                                Console.Write("Clicked At " + fwidth + " " + fheight);
+                            }
+                        }
+                        else
+                        {
+                            if (fingers.Count == 1)
+                            {
+                                Console.Write("TipPosition: " + fingers[0].TipPosition + " Width: " + width + " height: " + height + " tranX: " + tranX + " tranY: " + tranY + "\n");
+                                SetCursorPos(fwidth, fheight);
+                            }
+                        }
+                    }
+                    prevTime = currentTime;
+                }
+            }
+        }
 
 class Sample
 {

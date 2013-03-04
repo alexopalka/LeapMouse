@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LeapMouse.exe" size="6144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LeapMouse.exe" size="6656">
       <assemblyIdentity name="LeapMouse" version="0.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hrnUZNkRrCQaeAt5X4ZZl3ohVeCLSaLM2fQRN4hxHjc=</dsig:DigestValue>
+        <dsig:DigestValue>R40xYAnhq5f65Ufisy754JG/NCb2VSuDS64qwLbHJJ8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
