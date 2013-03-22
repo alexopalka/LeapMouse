@@ -1,0 +1,7 @@
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\LeapMouse\bin\x86\Debug\LeapMouse.exe.config
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\LeapMouse\obj\x86\Debug\LeapMouse.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\LeapMouse\bin\x86\Debug\LeapMouse.exe
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\LeapMouse\bin\x86\Debug\LeapMouse.pdb
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\LeapMouse\bin\x86\Debug\LeapCSharp.NET4.0.dll
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\LeapMouse\obj\x86\Debug\LeapMouse.exe
+C:\Users\Alex\Documents\GitHub\LeapMouse\LeapMouse\LeapMouse\obj\x86\Debug\LeapMouse.pdb
